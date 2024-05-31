@@ -24,22 +24,18 @@ class DadosPedidoActivity : AppCompatActivity() {
 
         val i = intent
 
-        /*
         if (intent.hasExtra("qt_temaki")) {
-            // O extra "qt_temaki" existe, podemos usá-lo
             val qtTemaki = intent.getStringExtra("qt_temaki")
             val pcTemaki = intent.getStringExtra("pc_temaki")
 
             // Faça algo com qtTemaki e pcTemaki
             // Por exemplo, exibir os valores em TextViews
-            findViewById<TextView>(R.id.textQtTemaki).text = qtTemaki
-            findViewById<TextView>(R.id.textPcTemaki).text = pcTemaki
+
         } else {
             // O extra "qt_temaki" não foi enviado (o valor era 0)
             // Lidar com essa situação, por exemplo, exibir uma mensagem ou ocultar certos elementos
-            findViewById<TextView>(R.id.textQtTemaki).text = "Temaki não solicitado"
-            findViewById<TextView>(R.id.textPcTemaki).text = "Preço não disponível"
+
         }
-        */
+
     }
 }

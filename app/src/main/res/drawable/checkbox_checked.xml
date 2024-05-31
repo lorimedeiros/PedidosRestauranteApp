@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#49D907" /> <!-- Fundo verde ao marcar -->
+            <corners android:radius="2dp" />
+            <stroke android:width="2dp" android:color="#49D907" /> <!-- Contorno branco -->
+        </shape>
+    </item>
+    <item>
+        <bitmap android:src="@drawable/ic_check_mark" android:gravity="center" />
+    </item>
+</layer-list>

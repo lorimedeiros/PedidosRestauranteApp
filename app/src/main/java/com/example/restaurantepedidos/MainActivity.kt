@@ -3,6 +3,9 @@ package com.example.restaurantepedidos
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,70 +30,44 @@ class MainActivity : AppCompatActivity() {
         binding.buttonPedido.setOnClickListener{
             val i = Intent(this, SplashScreenActivity::class.java)
 
-            if(binding.editQtYakissoba.text.toString().toInt() > 0){
-                i.putExtra("qt_yakissoba", binding.editQtYakissoba.text.toString())
-                i.putExtra("pc_yakissoba", binding.textPrecoYakissoba.text.toString())
-            }
-
-            if(binding.editQtTemaki.text.toString().toInt() > 0){
-                i.putExtra("qt_temaki", binding.editQtTemaki.text.toString())
-                i.putExtra("pc_temaki", binding.textPrecoTemaki.text.toString())
-            }
-
-            if(binding.editQtSushi.text.toString().toInt() > 0){
-                i.putExtra("qt_sushi", binding.editQtSushi.text.toString())
-                i.putExtra("pc_sushi", binding.textPrecoSushi.text.toString())
-            }
+            adicionaPedidoIntent(i, binding.editQtYakissoba, binding.textPrecoYakissoba, "qt_yakissoba", "preco_yakissoba")
+            adicionaPedidoIntent(i, binding.editQtTemaki, binding.textPrecoTemaki, "qt_temaki", "preco_temaki")
+            adicionaPedidoIntent(i, binding.editQtSushi, binding.textPrecoSushi, "qt_sushi", "preco_sushi")
 
             startActivity(i)
         }
 
-        binding.checkYakissoba.setOnClickListener{
-            if (binding.checkYakissoba.isChecked()){
-                binding.editQtYakissoba.setText("1")
-                binding.textPrecoYakissoba.visibility = View.VISIBLE
-                if (binding.editQtYakissoba.toString().toInt() > 1){
-                    val x = binding.editQtYakissoba.toString().toInt() * binding.textPrecoYakissoba.text.toString().toDouble()
-                    val final = "R$ $x"
-                    binding.textPrecoYakissoba.setText(final)
-                    binding.textPrecoYakissoba.visibility = View.VISIBLE
-                }
-            } else {
-                binding.editQtYakissoba.setText("0")
-                binding.textPrecoYakissoba.visibility = View.GONE
-            }
-        }
+        marcaCheckBox(binding.checkYakissoba, binding.editQtYakissoba, binding.textPrecoYakissoba)
+        marcaCheckBox(binding.checkTemaki, binding.editQtTemaki, binding.textPrecoTemaki)
+        marcaCheckBox(binding.checkSushi, binding.editQtSushi, binding.textPrecoSushi)
+    }
 
-        binding.checkTemaki.setOnClickListener{
-            if (binding.checkTemaki.isChecked()){
-                binding.editQtTemaki.setText("1")
-                binding.textPrecoTemaki.visibility = View.VISIBLE
-                if (binding.editQtTemaki.toString().toInt() > 1){
-                    val x = binding.editQtTemaki.toString().toInt() * binding.textPrecoTemaki.text.toString().toDouble()
-                    val final = "R$ $x"
-                    binding.textPrecoTemaki.setText(final)
-                    binding.editQtTemaki.visibility = View.VISIBLE
-                }
-            } else {
-                binding.editQtTemaki.setText("0")
-                binding.textPrecoTemaki.visibility = View.GONE
-            }
-        }
 
-        binding.checkSushi.setOnClickListener{
-            if (binding.checkSushi.isChecked()){
-                binding.editQtSushi.setText("1")
-                binding.textPrecoSushi.visibility = View.VISIBLE
-                if (binding.editQtSushi.toString().toInt() > 1){
-                    val x = binding.editQtSushi.toString().toInt() * binding.textPrecoSushi.text.toString().toDouble()
-                    val final = "R$ $x"
-                    binding.textPrecoSushi.setText(final)
-                    binding.editQtSushi.visibility = View.VISIBLE
+    private fun marcaCheckBox(checkBox: CheckBox, editText: EditText, textView: TextView){
+        if (checkBox.isChecked) {
+            editText.setText("1")
+            textView.visibility = View.VISIBLE
+            val quantity = editText.text.toString().toIntOrNull()
+            if (quantity != null && quantity > 1) {
+                val price = textView.text.toString().toDoubleOrNull()
+                if (price != null) {
+                    val total = quantity * price
+                    val finalText = "R$ $total"
+                    textView.text = finalText
+                    editText.visibility = View.VISIBLE
                 }
-            } else {
-                binding.editQtSushi.setText("0")
-                binding.textPrecoSushi.visibility = View.GONE
             }
+        } else {
+            editText.setText("0")
+            textView.visibility = View.GONE
+        }
+    }
+
+    fun adicionaPedidoIntent(intent: Intent, quantityEditText: EditText, priceTextView: TextView, quantityKey: String, priceKey: String) {
+        val quantity = quantityEditText.text.toString().toIntOrNull()
+        if (quantity != null && quantity > 0) {
+            intent.putExtra(quantityKey, quantityEditText.text.toString())
+            intent.putExtra(priceKey, priceTextView.text.toString())
         }
     }
 }
