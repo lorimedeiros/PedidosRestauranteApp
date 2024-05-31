@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 val price = textView.text.toString().toDoubleOrNull()
                 if (price != null) {
                     val total = quantity * price
-                    val finalText = "R$ $total"
+                    val finalText = "R$ $total" //lembrar de tirar 3 casas iniciais da string para poder tratar como int
                     textView.text = finalText
                     editText.visibility = View.VISIBLE
                 }
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun adicionaPedidoIntent(intent: Intent, quantityEditText: EditText, priceTextView: TextView, quantityKey: String, priceKey: String) {
+    private fun adicionaPedidoIntent(intent: Intent, quantityEditText: EditText, priceTextView: TextView, quantityKey: String, priceKey: String) {
         val quantity = quantityEditText.text.toString().toIntOrNull()
         if (quantity != null && quantity > 0) {
             intent.putExtra(quantityKey, quantityEditText.text.toString())
