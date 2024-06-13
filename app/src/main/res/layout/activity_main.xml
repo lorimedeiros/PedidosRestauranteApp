@@ -23,8 +23,7 @@
             android:layout_gravity="center"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:padding="8dp"
-            android:button="@drawable/checkbox_custom" />
+            android:padding="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -98,8 +97,7 @@
             android:layout_gravity="center"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:padding="8dp"
-            android:button="@drawable/checkbox_custom" /> />
+            android:padding="8dp"/>
 
         <TextView
             android:layout_width="74dp"
@@ -168,8 +166,7 @@
             android:layout_gravity="center"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:padding="8dp"
-            android:button="@drawable/checkbox_custom" /> />
+            android:padding="8dp"/>
 
         <TextView
             android:layout_width="74dp"

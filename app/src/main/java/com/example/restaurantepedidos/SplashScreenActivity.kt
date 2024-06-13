@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,10 +21,15 @@ class SplashScreenActivity : AppCompatActivity() {
             insets
         }
 
+        Log.d("SplashScreenActivity", "Splash screen carregada")
+
         Handler(Looper.getMainLooper()).postDelayed({
+            Log.d("SplashScreenActivity", "Timer finalizado, iniciando DadosPedidoActivity")
             val i = intent
+            Log.d("SplashScreenActivity", "Intent recebido: $i")
             val j = Intent(this, DadosPedidoActivity::class.java)
             j.putExtras(i)
+            Log.d("SplashScreenActivity", "Iniciando DadosPedidoActivity com Intent: $j")
             startActivity(j)
         }, 2000)
     }
