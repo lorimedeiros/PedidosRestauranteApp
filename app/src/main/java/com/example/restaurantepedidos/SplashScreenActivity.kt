@@ -21,6 +21,11 @@ class SplashScreenActivity : AppCompatActivity() {
             insets
         }
 
-
+        Handler(Looper.getMainLooper()).postDelayed({
+            val i = intent
+            val j = Intent(this, DadosPedidoActivity::class.java)
+            j.putExtras(i)
+            startActivity(j)
+        }, 2000)
     }
 }
