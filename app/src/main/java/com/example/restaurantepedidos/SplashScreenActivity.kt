@@ -21,16 +21,6 @@ class SplashScreenActivity : AppCompatActivity() {
             insets
         }
 
-        Log.d("SplashScreenActivity", "Splash screen carregada")
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            Log.d("SplashScreenActivity", "Timer finalizado, iniciando DadosPedidoActivity")
-            val i = intent
-            Log.d("SplashScreenActivity", "Intent recebido: $i")
-            val j = Intent(this, DadosPedidoActivity::class.java)
-            j.putExtras(i)
-            Log.d("SplashScreenActivity", "Iniciando DadosPedidoActivity com Intent: $j")
-            startActivity(j)
-        }, 2000)
     }
 }
