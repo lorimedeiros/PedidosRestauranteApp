@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,19 +33,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonPedido.setOnClickListener {
-            val i = Intent(this, SplashScreenActivity::class.java)
-            i.putExtra("qt_yakissoba", binding.editQtYakissoba.text.toString())
-            i.putExtra("qt_temaki", binding.editQtTemaki.text.toString())
-            i.putExtra("qt_sushi", binding.editQtSushi.text.toString())
 
-            val pcFinalYakissoba = binding.editQtYakissoba.text.toString().toDouble() * precoYakissoba
-            i.putExtra("pc_yakissoba", pcFinalYakissoba)
-            val pcFinalTemaki = binding.editQtTemaki.text.toString().toDouble() * precoTemaki
-            i.putExtra("pc_temaki", pcFinalTemaki)
-            val pcFinalSushi = binding.editQtSushi.text.toString().toDouble() * precoSushi
-            i.putExtra("pc_sushi", pcFinalSushi)
+            if (binding.editQtSushi.text.toString().toInt() == 0 &&
+                binding.editQtTemaki.text.toString().toInt() == 0 &&
+                binding.editQtYakissoba.text.toString().toInt() == 0){
 
-            startActivity(i)
+                return@setOnClickListener Toast.makeText(applicationContext, "Nenhum item adicionado", Toast.LENGTH_LONG).show()
+            } else {
+                val i = Intent(this, SplashScreenActivity::class.java)
+                i.putExtra("qt_yakissoba", binding.editQtYakissoba.text.toString())
+                i.putExtra("qt_temaki", binding.editQtTemaki.text.toString())
+                i.putExtra("qt_sushi", binding.editQtSushi.text.toString())
+
+                val pcFinalYakissoba = binding.editQtYakissoba.text.toString().toDouble() * precoYakissoba
+                i.putExtra("pc_yakissoba", pcFinalYakissoba)
+                val pcFinalTemaki = binding.editQtTemaki.text.toString().toDouble() * precoTemaki
+                i.putExtra("pc_temaki", pcFinalTemaki)
+                val pcFinalSushi = binding.editQtSushi.text.toString().toDouble() * precoSushi
+                i.putExtra("pc_sushi", pcFinalSushi)
+
+                startActivity(i)
+            }
         }
 
         binding.checkYakissoba.setOnClickListener {
